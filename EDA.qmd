@@ -1,0 +1,60 @@
+EDA
+```{r}
+library(tidyverse)
+```
+Understand how data is stored
+Data validation
+Determine rate of missing values
+Clean data up 
+Investigate distributions
+Apply transformations
+```{r}
+diabetes <- read.csv("diabetes_binary_health_indicators_BRFSS2015.csv")
+```
+
+```{r}
+# Convert binary variables into factors
+diabetes$Diabetes_binary <- factor(diabetes$Diabetes_binary, levels = c(0, 1, 2), labels = c("No diabetes", "prediabetes", "diabetes"))
+diabetes$HighBP <- factor(diabetes$HighBP, levels = c(0, 1), labels = c("No high BP", "High BP"))
+diabetes$HighChol <- factor(diabetes$HighChol, levels = c(0, 1), labels = c("No high cholesterol", "High cholesterol"))
+diabetes$CholCheck <- factor(diabetes$CholCheck, levels = c(0, 1), labels = c("No chol check in 5 years", "Yes chol check in 5 years"))
+diabetes$Smoker <- factor(diabetes$Smoker, levels = c(0, 1), labels = c("No", "Yes"))
+diabetes$Stroke <- factor(diabetes$Stroke, levels = c(0, 1), labels = c("No", "Yes"))
+diabetes$HeartDiseaseorAttack <- factor(diabetes$HeartDiseaseorAttack, levels = c(0, 1), labels = c("No", "Yes"))
+diabetes$PhysActivity <- factor(diabetes$PhysActivity, levels = c(0, 1), labels = c("No", "Yes"))
+diabetes$Fruits <- factor(diabetes$Fruits, levels = c(0, 1), labels = c("No", "Yes"))
+diabetes$Veggies <- factor(diabetes$Veggies, levels = c(0, 1), labels = c("No", "Yes"))
+diabetes$HvyAlcoholConsump <- factor(diabetes$HvyAlcoholConsump, levels = c(0, 1), labels = c("No", "Yes"))
+diabetes$AnyHealthcare <- factor(diabetes$AnyHealthcare, levels = c(0, 1), labels = c("No", "Yes"))
+diabetes$NoDocbcCost <- factor(diabetes$NoDocbcCost, levels = c(0, 1), labels = c("No", "Yes"))
+diabetes$GenHlth <- factor(diabetes$GenHlth, levels = c(1,2,3,4,5), labels = c("Excellent", "Very good", "Good", "Fair", "Poor"))
+diabetes$DiffWalk <- factor(diabetes$DiffWalk, levels = c(0, 1), labels = c("No", "Yes"))
+diabetes$Sex <- factor(diabetes$Sex, levels = c(0, 1), labels = c("Female", "Male"))
+diabetes$Age <- factor(diabetes$Age, levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13), labels = c("Female", "Male"))
+diabetes$Education <- factor(diabetes$Education, levels = c(1,2,3,4,5,6), labels = c("Female", "Male"))
+diabetes$Income <- factor(diabetes$Income, levels = c(1,2,3,4,5,6,7,8), labels = c("Female", "Male"))
+```
+
+
+
+```{r}
+str(diabetes)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Click here for the Modeling Page](Modeling.html)
