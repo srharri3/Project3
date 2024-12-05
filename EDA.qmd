@@ -120,7 +120,7 @@ diabetes |>
    summarize(mean_bmi = mean(BMI),
             median_bmi = median(BMI))
 ```
-
+From the plot below you can see that age 60-64 has the largest amount of people in the data set. The smallest group of ages included in the data set is 18-24, which is interesting.
 ```{r}
 plot1 <- ggplot(diabetes, aes(x=Age)) + 
   geom_bar(fill = "skyblue") + 
@@ -129,8 +129,20 @@ theme(axis.text.x = element_text(angle = 90, hjust = 1))
 plot1
 ```
 
+The boxplot below looks at BMI vs. Sex. Men have a slightly higher median when compared to women. women have a larger distribution of BMI.
 ```{r}
-
+boxplot1 <- ggplot(diabetes, aes(x = Sex, y = BMI)) +
+  geom_boxplot(fill = "skyblue") +
+  labs(title="Box Plot of BMI by Sex", x="Sex", y="BMI")
+boxplot1
+```
+From the graph below we can see that there are way more people who have not had heart disease or a heart attack. There is around 25,000 people who have had a heart attack and are included in the data set.
+```{r}
+plot2 <- ggplot(diabetes, aes(x=HeartDiseaseorAttack)) + 
+  geom_bar(fill = "skyblue") + 
+  labs(title="Bar Plot of Heart Disease or Attack", x="Heart Disease or Attack?", y="Count") +
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+plot2
 ```
 
 [Click here for the Modeling Page](Modeling.html)
