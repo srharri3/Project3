@@ -6,22 +6,22 @@ library(randomForest)
 
 
 ```{r}
-set.seed(123)
+#set.seed(123)
 
-train_indices <- sample(1:nrow(diabetes), size = 0.7 * nrow(diabetes))
-train_set <- diabetes[train_indices, ]
-test_set <- diabetes[-train_indices, ]
+#train_indices <- sample(1:nrow(diabetes), size = 0.7 * nrow(diabetes))
+#train_set <- diabetes[train_indices, ]
+#test_set <- diabetes[-train_indices, ]
 
-dim(train_set)
-dim(test_set) 
+#dim(train_set)
+#dim(test_set) 
 
-train_set$Diabetes_binary <- as.factor(train_set$Diabetes_binary)
-test_set$Diabetes_binary <- as.factor(test_set$Diabetes_binary)
+#train_set$Diabetes_binary <- as.factor(train_set$Diabetes_binary)
+#test_set$Diabetes_binary <- as.factor(test_set$Diabetes_binary)
 
 ```
 
 ```{r}
-cv_folds <- vfold_cv(train_set, v = 5)
+#cv_folds <- vfold_cv(train_set, v = 5)
 
 ```
 

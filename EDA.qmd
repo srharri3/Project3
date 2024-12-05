@@ -1,34 +1,56 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
 EDA
+
 ```{r}
 library(tidyverse)
 library(ggplot2)
 ```
-The data set used in this project is called the "Diabetes Health Indicators Dataset". Diabetes is a large problem in America; as of 2018 34.2 million Americans have diabetes and 88 million have prediabetes. The original data set from the Behavioral Risk Factor Surveillance System (BRFSS) contains responses from 441,455 and has 330 features.
 
-This project looks at a few variables in particular: 
-Smoker: Have you smoked at least 100 cigarettes in your entire life (YES OR NO)
+The data set used in this project is called the "**Diabetes Health
+Indicators Dataset**". Diabetes is a large problem in America; as of
+2018 34.2 million Americans have diabetes and 88 million have
+prediabetes. The original data set from the Behavioral Risk Factor
+Surveillance System (BRFSS) contains responses from 441,455 and has 330
+features.
+
+This project looks at a few variables in particular:
+
+Smoker: Have you smoked at least 100 cigarettes in your entire life (YES
+OR NO)
+
 PhysActivity: Physical activity in the last 30 days (YES OR NO)
+
 Education: Education level
+
 Age: Age category of subject
+
 Sex: Male or Female
-HeartDiseaseorAttack: Coronary heart disease (CHD) or myocardial infarction (MI) (YES OR NO)
-HighBP: No high BP or high BP
-BMI: BMI of subject
 
-The goal of Exploratory Data Analysis (EDA) is to analyze and investigate data sets to understand and summarize the data before applying them to models. This helps validate results from models and other applications.
+HeartDiseaseorAttack: Coronary heart disease (CHD) or myocardial
+infarction (MI) (YES OR NO)
 
-EDA Process:
-Understand how data is stored
-Data validation
-Determine rate of missing values
-Clean data up 
-Investigate distributions
-Apply transformations
+HighBP: No high BP or high BP BMI: BMI of subject
+
+The goal of Exploratory Data Analysis (EDA) is to analyze and
+investigate data sets to understand and summarize the data before
+applying them to models. This helps validate results from models and
+other applications.
+
+**EDA Process:** Understand how data is stored Data validation Determine
+rate of missing values Clean data up Investigate distributions Apply
+transformations
+
 ```{r}
 diabetes <- read.csv("diabetes_binary_health_indicators_BRFSS2015.csv")
 ```
 
 Cleaning the data and turning the variables into factors.
+
 ```{r}
 diabetes$Diabetes_binary <- factor(diabetes$Diabetes_binary, levels = c(0, 1, 2), labels = c("No diabetes", "prediabetes", "diabetes"))
 diabetes$HighBP <- factor(diabetes$HighBP, levels = c(0, 1), labels = c("No high BP", "High BP"))
@@ -56,23 +78,25 @@ diabetes$BMI <- as.double(diabetes$BMI)
 ```
 
 Checking for missing values in the data.
+
 ```{r}
 colSums(is.na(diabetes))
 ```
+
 Looking at the structure of the data.
+
 ```{r}
 str(diabetes)
 ```
-Checking the attributes of the data.
-```{r}
-attributes(diabetes)
-```
+
 Summarizing the data set.
+
 ```{r}
 summary(diabetes)
 ```
 
 Creating contingency tables.
+
 ```{r}
 smoker_table <- table(diabetes$Smoker, diabetes$HeartDiseaseorAttack)
 rownames(smoker_table) <- c("Not smoked 100 cigarettes", "Smoked 100 cigarettes")
@@ -97,14 +121,16 @@ diabetes |>
             median_bmi = median(BMI))
 ```
 
+```{r}
+plot1 <- ggplot(diabetes, aes(x=Age)) + 
+  geom_bar(fill = "skyblue") + 
+  labs(title="Bar Plot of Age", x="Age", y="Count") +
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+plot1
+```
 
+```{r}
 
-
-
-
-
-
-
-
+```
 
 [Click here for the Modeling Page](Modeling.html)
