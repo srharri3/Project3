@@ -1,0 +1,34 @@
+```{r}
+library(tidymodels)
+library(randomForest)
+```
+
+
+
+```{r}
+set.seed(123)
+
+train_indices <- sample(1:nrow(diabetes), size = 0.7 * nrow(diabetes))
+train_set <- diabetes[train_indices, ]
+test_set <- diabetes[-train_indices, ]
+
+dim(train_set)
+dim(test_set) 
+
+train_set$Diabetes_binary <- as.factor(train_set$Diabetes_binary)
+test_set$Diabetes_binary <- as.factor(test_set$Diabetes_binary)
+
+```
+
+```{r}
+cv_folds <- vfold_cv(train_set, v = 5)
+
+```
+
+
+Classification Trees:
+A classification tree is a type of decision tree model that is used for categorical variables. The data set is split into subsets to predict outcomes and assign variables to classes.
+
+Random Forest:
+Random Forest models are helpful because they aggregate the predictions of multiple decision trees. This allows for more generalization and less variance in the modeling. Instead of just looking at one subset, it gives a better overall picture of the data. 
+

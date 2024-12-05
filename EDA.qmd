@@ -1,8 +1,23 @@
 EDA
 ```{r}
 library(tidyverse)
+library(ggplot2)
 ```
-EDA:
+The data set used in this project is called the "Diabetes Health Indicators Dataset". Diabetes is a large problem in America; as of 2018 34.2 million Americans have diabetes and 88 million have prediabetes. The original data set from the Behavioral Risk Factor Surveillance System (BRFSS) contains responses from 441,455 and has 330 features.
+
+This project looks at a few variables in particular: 
+Smoker: Have you smoked at least 100 cigarettes in your entire life (YES OR NO)
+PhysActivity: Physical activity in the last 30 days (YES OR NO)
+Education: Education level
+Age: Age category of subject
+Sex: Male or Female
+HeartDiseaseorAttack: Coronary heart disease (CHD) or myocardial infarction (MI) (YES OR NO)
+HighBP: No high BP or high BP
+BMI: BMI of subject
+
+The goal of Exploratory Data Analysis (EDA) is to analyze and investigate data sets to understand and summarize the data before applying them to models. This helps validate results from models and other applications.
+
+EDA Process:
 Understand how data is stored
 Data validation
 Determine rate of missing values
@@ -56,14 +71,6 @@ Summarizing the data set.
 summary(diabetes)
 ```
 
-Variables:
-Smoker: Have you smoked at least 100 cigarettes in your entire life (YES OR NO)
-PhysActivity: Physical activity in the last 30 days (YES OR NO)
-Education: Education level
-Age: Age category of data point
-Sex: Male or Female
-HeartDiseaseorAttack: Coronary heart disease (CHD) or myocardial infarction (MI) (YES OR NO)
-HighBP: No high BP or high BP
 
 ```{r}
 smoker_table <- table(diabetes$Smoker, diabetes$HeartDiseaseorAttack)
@@ -74,11 +81,22 @@ smoker_table_margins
 ```
 
 ```{r}
-mean()
+table2 <- table(diabetes$Age, diabetes$PhysActivity, diabetes$HighBP)
+colnames(table2) <- c("No Phys Activity in last 30 days", "Physical activity in last 30 days")
+table2
 ```
 
+```{r}
+bar1 <- ggplot(diabetes, aes(x = )) + geom_bar(fill = "skyblue") + labs(title = "Distribution of Education Levels", x + "Education Level", y = "Count")
+bar1
+```
 
-
+```{r}
+box1 <- ggplot(diabetes, aes(x = Age, y = BMI)) +
+  geom_boxplot(fill = "skyblue") +
+  labs(title = "BMI distribution by Age")
+box1
+```
 
 
 
