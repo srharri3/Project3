@@ -52,6 +52,7 @@ diabetes$Income <- factor(diabetes$Income, levels = c(1,2,3,4,5,6,7,8,77,99), la
 diabetes$BMI <- format(diabetes$BMI, nsmall = 1)
 diabetes$MentHlth <- format(diabetes$MentHlth, nsmall = 1)
 diabetes$PhysHlth <- format(diabetes$PhysHlth, nsmall = 1)
+diabetes$BMI <- as.double(diabetes$BMI)
 ```
 
 Checking for missing values in the data.
@@ -71,7 +72,7 @@ Summarizing the data set.
 summary(diabetes)
 ```
 
-
+Creating contingency tables.
 ```{r}
 smoker_table <- table(diabetes$Smoker, diabetes$HeartDiseaseorAttack)
 rownames(smoker_table) <- c("Not smoked 100 cigarettes", "Smoked 100 cigarettes")
@@ -87,16 +88,15 @@ table2
 ```
 
 ```{r}
-bar1 <- ggplot(diabetes, aes(x = )) + geom_bar(fill = "skyblue") + labs(title = "Distribution of Education Levels", x + "Education Level", y = "Count")
-bar1
+typeof(diabetes$BMI)
 ```
 
 ```{r}
-box1 <- ggplot(diabetes, aes(x = Age, y = BMI)) +
-  geom_boxplot(fill = "skyblue") +
-  labs(title = "BMI distribution by Age")
-box1
+diabetes |>
+   summarize(mean_bmi = mean(BMI),
+            median_bmi = median(BMI))
 ```
+
 
 
 
