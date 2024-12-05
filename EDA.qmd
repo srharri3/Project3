@@ -2,6 +2,7 @@ EDA
 ```{r}
 library(tidyverse)
 ```
+EDA:
 Understand how data is stored
 Data validation
 Determine rate of missing values
@@ -12,6 +13,7 @@ Apply transformations
 diabetes <- read.csv("diabetes_binary_health_indicators_BRFSS2015.csv")
 ```
 
+Cleaning the data and turning the variables into factors.
 ```{r}
 diabetes$Diabetes_binary <- factor(diabetes$Diabetes_binary, levels = c(0, 1, 2), labels = c("No diabetes", "prediabetes", "diabetes"))
 diabetes$HighBP <- factor(diabetes$HighBP, levels = c(0, 1), labels = c("No high BP", "High BP"))
@@ -37,30 +39,43 @@ diabetes$MentHlth <- format(diabetes$MentHlth, nsmall = 1)
 diabetes$PhysHlth <- format(diabetes$PhysHlth, nsmall = 1)
 ```
 
-
-```{r}
-typeof(diabetes$BMI)
-typeof(diabetes$MentHlth)
-```
-
+Checking for missing values in the data.
 ```{r}
 colSums(is.na(diabetes))
 ```
-
+Looking at the structure of the data.
 ```{r}
 str(diabetes)
 ```
-
+Checking the attributes of the data.
 ```{r}
 attributes(diabetes)
 ```
-
+Summarizing the data set.
 ```{r}
 summary(diabetes)
 ```
 
+Variables:
+Smoker: Have you smoked at least 100 cigarettes in your entire life (YES OR NO)
+PhysActivity: Physical activity in the last 30 days (YES OR NO)
+Education: Education level
+Age: Age category of data point
+Sex: Male or Female
+HeartDiseaseorAttack: Coronary heart disease (CHD) or myocardial infarction (MI) (YES OR NO)
+HighBP: No high BP or high BP
 
+```{r}
+smoker_table <- table(diabetes$Smoker, diabetes$HeartDiseaseorAttack)
+rownames(smoker_table) <- c("Not smoked 100 cigarettes", "Smoked 100 cigarettes")
+colnames(smoker_table) <- c("No CHS/MI", "Yes CHS/MI")
+smoker_table_margins <- addmargins(smoker_table)
+smoker_table_margins
+```
 
+```{r}
+mean()
+```
 
 
 
