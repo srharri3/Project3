@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>EDA</p>
+<p>Project 3 - Savannah Harrison</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -134,10 +134,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The data set used in this project is called the “Diabetes Health Indicators Dataset”. Diabetes is a large problem in America; as of 2018 34.2 million Americans have diabetes and 88 million have prediabetes. The original data set from the Behavioral Risk Factor Surveillance System (BRFSS) contains responses from 441,455 and has 330 features.</p>
-<p>This project looks at a few variables in particular: Smoker: Have you smoked at least 100 cigarettes in your entire life (YES OR NO) PhysActivity: Physical activity in the last 30 days (YES OR NO) Education: Education level Age: Age category of subject Sex: Male or Female HeartDiseaseorAttack: Coronary heart disease (CHD) or myocardial infarction (MI) (YES OR NO) HighBP: No high BP or high BP BMI: BMI of subject</p>
+<p>The data set used in this project is called the “<strong>Diabetes Health Indicators Dataset</strong>”. Diabetes is a large problem in America; as of 2018 34.2 million Americans have diabetes and 88 million have prediabetes. The original data set from the Behavioral Risk Factor Surveillance System (BRFSS) contains responses from 441,455 and has 330 features.</p>
+<p>This project looks at a few variables in particular:</p>
+<p><strong>Smoker:</strong> Have you smoked at least 100 cigarettes in your entire life (YES OR NO)</p>
+<p><strong>PhysActivity:</strong> Physical activity in the last 30 days (YES OR NO)</p>
+<p><strong>Education:</strong> Education level</p>
+<p><strong>Age:</strong> Age category of subject</p>
+<p><strong>Sex:</strong> Male or Female</p>
+<p><strong>HeartDiseaseorAttack:</strong> Coronary heart disease (CHD) or myocardial infarction (MI) (YES OR NO)</p>
+<p><strong>HighBP:</strong> No high BP or high BP BMI: BMI of subject</p>
 <p>The goal of Exploratory Data Analysis (EDA) is to analyze and investigate data sets to understand and summarize the data before applying them to models. This helps validate results from models and other applications.</p>
-<p>EDA Process: Understand how data is stored Data validation Determine rate of missing values Clean data up Investigate distributions Apply transformations</p>
+<p><strong>EDA Process:</strong> Understand how data is stored Data validation Determine rate of missing values Clean data up Investigate distributions Apply transformations</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"diabetes_binary_health_indicators_BRFSS2015.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -382,7 +389,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1 28.38236         27</code></pre>
 </div>
 </div>
-<p><a href="http://localhost:3043/Modeling.html">Click here for the Modeling Page</a></p>
+<p>From the plot below you can see that age 60-64 has the largest amount of people in the data set. The smallest group of ages included in the data set is 18-24, which is interesting.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diabetes, <span class="fu">aes</span>(<span class="at">x=</span>Age)) <span class="sc">+</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Bar Plot of Age"</span>, <span class="at">x=</span><span class="st">"Age"</span>, <span class="at">y=</span><span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>plot1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="EDA_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The boxplot below looks at BMI vs.&nbsp;Sex. Men have a slightly higher median when compared to women. women have a larger distribution of BMI.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>boxplot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diabetes, <span class="fu">aes</span>(<span class="at">x =</span> Sex, <span class="at">y =</span> BMI)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Box Plot of BMI by Sex"</span>, <span class="at">x=</span><span class="st">"Sex"</span>, <span class="at">y=</span><span class="st">"BMI"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>boxplot1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="EDA_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From the graph below we can see that there are way more people who have not had heart disease or a heart attack. There is around 25,000 people who have had a heart attack and are included in the data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diabetes, <span class="fu">aes</span>(<span class="at">x=</span>HeartDiseaseorAttack)) <span class="sc">+</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Bar Plot of Heart Disease/Attack"</span>, <span class="at">x=</span><span class="st">"Heart Disease or Attack?"</span>, <span class="at">y=</span><span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>plot2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="EDA_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="Modeling.html">Click here for the Modeling Page</a></p>
 
 
 

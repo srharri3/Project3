@@ -4,7 +4,7 @@ editor:
     wrap: 72
 ---
 
-EDA
+Project 3 - Savannah Harrison
 
 ```{r}
 library(tidyverse)
@@ -20,21 +20,21 @@ features.
 
 This project looks at a few variables in particular:
 
-Smoker: Have you smoked at least 100 cigarettes in your entire life (YES
-OR NO)
+**Smoker:** Have you smoked at least 100 cigarettes in your entire life
+(YES OR NO)
 
-PhysActivity: Physical activity in the last 30 days (YES OR NO)
+**PhysActivity:** Physical activity in the last 30 days (YES OR NO)
 
-Education: Education level
+**Education:** Education level
 
-Age: Age category of subject
+**Age:** Age category of subject
 
-Sex: Male or Female
+**Sex:** Male or Female
 
-HeartDiseaseorAttack: Coronary heart disease (CHD) or myocardial
+**HeartDiseaseorAttack:** Coronary heart disease (CHD) or myocardial
 infarction (MI) (YES OR NO)
 
-HighBP: No high BP or high BP BMI: BMI of subject
+**HighBP:** No high BP or high BP BMI: BMI of subject
 
 The goal of Exploratory Data Analysis (EDA) is to analyze and
 investigate data sets to understand and summarize the data before
@@ -120,7 +120,11 @@ diabetes |>
    summarize(mean_bmi = mean(BMI),
             median_bmi = median(BMI))
 ```
-From the plot below you can see that age 60-64 has the largest amount of people in the data set. The smallest group of ages included in the data set is 18-24, which is interesting.
+
+From the plot below you can see that age 60-64 has the largest amount of
+people in the data set. The smallest group of ages included in the data
+set is 18-24, which is interesting.
+
 ```{r}
 plot1 <- ggplot(diabetes, aes(x=Age)) + 
   geom_bar(fill = "skyblue") + 
@@ -129,18 +133,24 @@ theme(axis.text.x = element_text(angle = 90, hjust = 1))
 plot1
 ```
 
-The boxplot below looks at BMI vs. Sex. Men have a slightly higher median when compared to women. women have a larger distribution of BMI.
+The boxplot below looks at BMI vs. Sex. Men have a slightly higher
+median when compared to women. women have a larger distribution of BMI.
+
 ```{r}
 boxplot1 <- ggplot(diabetes, aes(x = Sex, y = BMI)) +
   geom_boxplot(fill = "skyblue") +
   labs(title="Box Plot of BMI by Sex", x="Sex", y="BMI")
 boxplot1
 ```
-From the graph below we can see that there are way more people who have not had heart disease or a heart attack. There is around 25,000 people who have had a heart attack and are included in the data set.
+
+From the graph below we can see that there are way more people who have
+not had heart disease or a heart attack. There is around 25,000 people
+who have had a heart attack and are included in the data set.
+
 ```{r}
 plot2 <- ggplot(diabetes, aes(x=HeartDiseaseorAttack)) + 
-  geom_bar(fill = "skyblue") + 
-  labs(title="Bar Plot of Heart Disease or Attack", x="Heart Disease or Attack?", y="Count") +
+  geom_bar(fill = "skyblue") +
+  labs(title="Bar Plot of Heart Disease/Attack", x="Heart Disease or Attack?", y="Count") +
 theme(axis.text.x = element_text(angle = 90, hjust = 1))
 plot2
 ```
